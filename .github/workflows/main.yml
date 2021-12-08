@@ -20,13 +20,14 @@ jobs:
           mkdir artifact
           cd artifact
           echo text > test.txt
+          echo sample > sample.txt
           cd ..
           pwd
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: artifact/test.txt
+          path: artifact
 
   deploy:
 
@@ -49,7 +50,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          path: artifact/test.txt
+          path: artifact
 
       - name: Check file content
         run: |
@@ -58,7 +59,7 @@ jobs:
 
       - name: Commit to gh-pages branch
         run: |
-          git add artifact/test.txt
+          git add artifact
           git commit -m "Deploy documentation"
           git push origin gh-pages
 
