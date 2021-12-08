@@ -16,14 +16,17 @@ jobs:
 
       - name: Create txt file
         run: |
+          mkdir docs
+          cd docs
           echo Text > test.txt
           echo SampleNew > sample.txt
+          cd ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: .
+          path: docs
 
   deploy:
 
@@ -47,7 +50,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: .
+          path: docs
 
       - name: Commit to gh-pages branch
         run: |
