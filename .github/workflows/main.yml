@@ -15,12 +15,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create txt file
-        run: echo TextText > test.txt
+        run: |
+          mkdir docs
+          cd docs
+          echo TextText > test.txt
+          cd ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: test.txt
+          path: docs/test.txt
 
   deploy:
 
@@ -43,16 +47,16 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          path: test.txt
+          path: docs/test.txt
 
       - name: Check file content
-        run: cat test.txt
+        run: cat docs/test.txt
 
       - name: Commit to gh-pages branch
         run: |
-          git add test.txt
+          git add docs/test.txt
           git commit -m "Deploy documentation"
-          git push origin gh-pages
+          git subtree push --prefix=docs origin gh-pages
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
