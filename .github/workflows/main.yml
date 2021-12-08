@@ -19,7 +19,7 @@ jobs:
           mkdir docs
           cd docs
           echo Text > test.txt
-          echo SampleNew > sample.txt
+          echo Sample > sample.txt
           cd ..
 
       - name: Upload artifact
