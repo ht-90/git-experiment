@@ -40,9 +40,6 @@ jobs:
           git checkout --orphan gh-pages
           git reset --hard
 
-      - name: Check file content
-        run: cat test.txt
-
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
