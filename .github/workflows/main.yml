@@ -19,7 +19,7 @@ jobs:
           pwd
           mkdir artifact
           cd artifact
-          echo TEXT > test.txt
+          echo text > test.txt
           cd ..
           pwd
 
