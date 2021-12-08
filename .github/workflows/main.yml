@@ -16,17 +16,14 @@ jobs:
 
       - name: Create txt file
         run: |
-          mkdir build
-          cd build
           echo Text > test.txt
           echo SampleNew > sample.txt
-          cd ..
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: artifact
-          path: build
+          path: .
 
   deploy:
 
@@ -50,13 +47,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact
-          path: build
+          path: .
 
       - name: Commit to gh-pages branch
         run: |
-          git add build
+          git add -A
           git commit -m "Deploy documentation"
-          git subtree push --prefix=build origin gh-pages
+          git push origin gh-pages
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
