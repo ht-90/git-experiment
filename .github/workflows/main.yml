@@ -17,8 +17,8 @@ jobs:
       - name: Create txt file
         run: |
           pwd
-          mkdir docs
-          cd docs
+          mkdir artifact
+          cd artifact
           echo TEXT > test.txt
           cd ..
           pwd
@@ -26,7 +26,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: docs/test.txt
+          path: artifact/test.txt
 
   deploy:
 
@@ -49,19 +49,19 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          path: docs/test.txt
+          path: artifact/test.txt
 
       - name: Check file content
         run: |
           pwd
           ls
-          cat docs/test.txt
+          cat artifact/test.txt
 
       - name: Commit to gh-pages branch
         run: |
-          git add docs/test.txt
+          git add artifact/test.txt
           git commit -m "Deploy documentation"
-          git subtree push --prefix=docs origin gh-pages
+          git subtree push --prefix=artifact origin gh-pages
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
