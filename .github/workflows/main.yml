@@ -60,7 +60,7 @@ jobs:
         run: |
           git add artifact/test.txt
           git commit -m "Deploy documentation"
-          git subtree push --prefix=artifact origin gh-pages
+          git push origin gh-pages
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
