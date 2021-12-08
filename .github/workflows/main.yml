@@ -54,7 +54,7 @@ jobs:
 
       - name: Commit to gh-pages branch
         run: |
-          git add -A
+          git add docs
           git commit -m "Deploy documentation"
           git push origin gh-pages
 
