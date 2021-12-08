@@ -45,7 +45,7 @@ jobs:
           
       - name: Create orphan branch
         run: |
-          if [ git ls-remote --heads origin gh-pages | grep gh-pages ]
+          if git ls-remote --heads origin gh-pages | grep gh-pages
           then
             git pull origin gh-pages
           else
