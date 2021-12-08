@@ -68,5 +68,4 @@ jobs:
           git commit -m "Deploy documentation"
           git push origin gh-pages
 
-      - name: Create .nojekyll file
-        run: echo > .nojekyll
+
