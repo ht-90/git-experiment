@@ -65,11 +65,7 @@ jobs:
       - name: Create .nojekyll file
         run: echo > .nojekyll
 
-      # - name: Commit to gh-pages branch
-      #   run: |
-      #     git add docs .nojekyll
-      #     git commit -m "Deploy documentation"
-      #     git push origin gh-pages
+
 
       - name: Commit to gh-pages branch
         run: |
