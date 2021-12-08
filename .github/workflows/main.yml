@@ -25,6 +25,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
+          name: artifact
           path: build
 
   deploy:
@@ -48,6 +49,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
+          name: artifact
           path: build
 
       - name: Commit to gh-pages branch
