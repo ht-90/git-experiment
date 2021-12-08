@@ -55,7 +55,6 @@ jobs:
         run: |
           pwd
           ls
-          cat artifact/test.txt
 
       - name: Commit to gh-pages branch
         run: |
