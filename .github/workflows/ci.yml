@@ -31,7 +31,7 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           pip install --upgrade pip wheel
-          pip install testing.postgresql
+          pip install sqlalchemy testing.postgresql
 
       - name: Install PostGIS
         run: sudo apt-get install postgis
