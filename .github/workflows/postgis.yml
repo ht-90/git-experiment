@@ -41,8 +41,8 @@ jobs:
 
       - name: Display postgresql info
         run: |
-          postgres -V
-          locate bin/postgres
+          psql --version
+          which psql
 
       - name: Test PostgreSQL
         run : tox -e test
