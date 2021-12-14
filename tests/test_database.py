@@ -4,6 +4,8 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import Column, String, Integer
 import warnings
 
+from . import Postgresql, DATABASE, DEFAULT_DB_URI, DB_URI
+
 
 Base = declarative_base()
 
