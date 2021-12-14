@@ -35,7 +35,9 @@ jobs:
           pip install tox tox-gh-actions
 
       - name: Install PostgreSQL and PostGIS
-        run: sudo apt install postgresql-14-postgis-scripts
+        run: |
+          sudo apt-get -y install postgresql-14
+          sudo apt install postgis
 
       - name: Test PostgreSQL
         run : tox -e test
