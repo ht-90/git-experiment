@@ -1,0 +1,44 @@
+name: build
+
+on:
+  [ "push", "pull_request"]
+
+jobs:
+
+  build:
+
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
+      - name: Cache python dependecies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('tox.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install python dependecies
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install --upgrade pip wheel
+          pip install tox tox-gh-actions
+
+      - name: Install PostgreSQL and PostGIS
+        run: |
+          sudo apt -y install postgresql-12 postgresql-client-12
+          sudo apt install postgis postgresql-12-postgis-3
+          sudo apt-get install postgresql-12-postgis-3-scripts
+
+      - name: Test PostgreSQL
+        run : tox
