@@ -41,4 +41,4 @@ jobs:
           sudo apt-get install postgresql-12-postgis-3-scripts
 
       - name: Test PostgreSQL
-        run : tox
+        run : tox -e test
