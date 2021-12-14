@@ -36,9 +36,7 @@ jobs:
 
       - name: Install PostgreSQL and PostGIS
         run: |
-          sudo apt -y install postgresql-12 postgresql-client-12
-          sudo apt install postgis postgresql-12-postgis-2.5
-          sudo apt-get install postgresql-12-postgis-2.5-scripts
+          sudo apt install postgresql-12-postgis-3
 
       - name: Test PostgreSQL
         run : tox -e test
