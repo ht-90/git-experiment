@@ -7,15 +7,15 @@ jobs:
 
   build:
 
-    services:
+    # services:
 
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_DB: postgres
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
+    #   postgres:
+    #     image: postgres
+    #     env:
+    #       POSTGRES_DB: postgres
+    #       POSTGRES_USER: postgres
+    #     ports:
+    #       - 5432:5432
 
     name: build
     runs-on: ubuntu-latest
@@ -44,11 +44,8 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install tox tox-gh-actions
 
-      # - name: Test PostgreSQL
-      #   run : tox -e test
+      - name: Install PostGIS
+        run: sudo apt-get install postgis
 
-      - name: Install PostGIS by psql
-        run: |
-          sudo -u postgres psql
-          CREATE DATABASE test_db;
-          CREATE EXTENSION postgis;
+      - name: Test PostgreSQL
+        run : tox -e test
