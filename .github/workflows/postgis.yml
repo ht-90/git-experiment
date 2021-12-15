@@ -58,13 +58,18 @@ jobs:
         run: pg_config
 
       - name: Install PostGIS
-        run: sudo apt-get install postgis postgresql-14-postgis-scripts
+        run: sudo apt-get install postgis
 
       - name: Check psql
         run: psql --version
 
       - name: Check config
         run: pg_config
+
+      - name: Find postgres.control
+        run: |
+          cd ../../..
+          find . -name postgres.control
 
       - name: Test PostgreSQL
         run : tox -e test
