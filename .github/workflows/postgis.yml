@@ -36,6 +36,20 @@ jobs:
 
       - name: Install PostgreSQL
         run: sudo apt-get -y install postgresql
+      
+      - name: Check files
+        runrun: |
+          ls
+          cd usr
+          ls
+          cd share
+          ls
+          cd postgresql
+          ls
+          cd 12
+          ls
+          cd extension
+          ls
 
       - name: Test PostgreSQL
         run : tox -e test
