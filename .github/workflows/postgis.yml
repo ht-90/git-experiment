@@ -15,7 +15,7 @@ jobs:
           POSTGRES_DB: postgres
           POSTGRES_USER: postgres
         ports:
-          - 5555:5555
+          - 5432:5432
 
     name: build
     runs-on: ubuntu-latest
