@@ -47,9 +47,18 @@ jobs:
       - name: Check PostgreSQL version
         run: sudo apt-cache search postgresql | grep postgresql
 
-      - name: Install PostGIS
+      - name: Install PostgreSQL
         run: |
           sudo apt-get -y install postgresql-14
+
+      - name: Check psql
+        run: psql --version
+
+      - name: Check config
+        run: pg_config
+
+      - name: Install PostGIS
+        run: sudo apt-get install postgis postgresql-14-postgis-scripts
 
       - name: Check psql
         run: psql --version
