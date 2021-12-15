@@ -44,5 +44,11 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install tox tox-gh-actions
 
-      - name: Test PostgreSQL
-        run : tox -e test
+      # - name: Test PostgreSQL
+      #   run : tox -e test
+
+      - name: Install PostGIS by psql
+        run: |
+          sudo -u postgres psql
+          CREATE DATABASE test_db;
+          CREATE EXTENSION postgis;
