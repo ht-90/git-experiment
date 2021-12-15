@@ -66,10 +66,11 @@ jobs:
       - name: Check config
         run: pg_config
 
-      - name: Find postgres.control
+      - name: Find postgres.control and psql.exe
         run: |
           cd ../../..
           find . -name postgres.control
+          find . -name psql.exe
 
       - name: Test PostgreSQL
         run : tox -e test
