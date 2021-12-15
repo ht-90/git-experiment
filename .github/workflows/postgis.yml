@@ -44,8 +44,13 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install tox tox-gh-actions
 
+      - name: Check PostgreSQL version
+        run: sudo apt-cache search postgresql | grep postgresql
+
       - name: Install PostGIS
-        run: sudo apt-get install postgis
+        run: |
+          sudo apt -y install postgresql-14
+          sudo apt-get install postgis
 
       - name: Check config
         run: pg_config
