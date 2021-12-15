@@ -48,7 +48,9 @@ jobs:
         run: sudo apt-get install postgis
       
       - name: Find files with postgres
-        run: mdfind -name "postgres" | grep -G "postgres$"
+        run: |
+          cd ../..
+          find . -iname "postgres" | grep -G "postgres$"
 
       - name: Check config
         run: pg_config
