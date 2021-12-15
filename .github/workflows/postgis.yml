@@ -49,8 +49,10 @@ jobs:
 
       - name: Install PostGIS
         run: |
-          sudo apt -y install postgresql-14
-          sudo apt-get install postgis
+          sudo apt-get -y install postgresql-14
+
+      - name: Check psql
+        run: psql --version
 
       - name: Check config
         run: pg_config
