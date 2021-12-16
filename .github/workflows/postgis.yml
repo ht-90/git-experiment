@@ -59,7 +59,7 @@ jobs:
         run: pg_config
 
       - name: Install PostGIS
-        run: sudo apt-get install postgis
+        run: sudo apt-get install postgis*
 
       - name: Check psql
         run: |
