@@ -44,38 +44,11 @@ jobs:
           python -m pip install --upgrade pip wheel
           pip install tox tox-gh-actions
 
-      - name: Check PostgreSQL version
-        run: sudo apt-cache search postgresql | grep postgresql
-
-      - name: Install PostgreSQL
+      - name: Reinstall PostgreSQL and PostGIS
         run: |
-          sudo apt-get --purge remove postgresql postgresql-*
+          sudo apt-get --purge remove postgresql-*
           sudo apt-get -y install postgresql
           sudo apt-get install postgis*
-
-      - name: Check psql
-        run: psql --version
-
-      - name: Check config
-        run: pg_config
-
-      # - name: Install PostGIS
-      #   run: sudo apt-get install postgis postgresql-14-postgis-3-scripts
-
-      - name: Check psql
-        run: |
-          psql --version
-          which psql
-
-      - name: Check config
-        run: |
-          which pg_config
-          pg_config
-
-      - name: Find postgres.control and psql.exe
-        run: |
-          find . -name postgres.control
-          find . -name psql.exe
 
       - name: Test PostgreSQL
         run : tox -e test
