@@ -51,6 +51,7 @@ jobs:
         run: |
           sudo apt-get --purge remove postgresql postgresql-*
           sudo apt-get -y install postgresql
+          sudo apt-get install postgis*
 
       - name: Check psql
         run: psql --version
