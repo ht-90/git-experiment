@@ -62,10 +62,14 @@ jobs:
         run: sudo apt-get install postgis
 
       - name: Check psql
-        run: psql --version
+        run: |
+          psql --version
+          which psql
 
       - name: Check config
-        run: pg_config
+        run: |
+          which pg_config
+          pg_config
 
       - name: Find postgres.control and psql.exe
         run: |
