@@ -69,6 +69,9 @@ jobs:
       - name: Find postgres.control and psql.exe
         run: |
           cd ../../..
+          ls
+          cd ..
+          ls
           find . -name postgres.control
           find . -name psql.exe
 
