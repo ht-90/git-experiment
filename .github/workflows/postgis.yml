@@ -50,6 +50,7 @@ jobs:
       - name: Install PostgreSQL
         run: |
           sudo apt-get -y install postgresql-14
+          sudo apt-get install postgresql-server-dev-all
 
       - name: Check psql
         run: psql --version
@@ -68,10 +69,6 @@ jobs:
 
       - name: Find postgres.control and psql.exe
         run: |
-          cd ../../..
-          ls
-          cd ..
-          ls
           find . -name postgres.control
           find . -name psql.exe
 
