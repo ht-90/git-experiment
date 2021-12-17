@@ -63,7 +63,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Sphinx documentation
-          path: docs/build
+          path: .
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
