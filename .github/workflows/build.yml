@@ -1,0 +1,44 @@
+name: build
+
+on:
+  [ "push", "pull_request" ]
+
+jobs:
+
+  build:
+
+    name: build
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Install python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
+      - name: Cache python dependecies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install python dependecies
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install --upgrade pip wheel
+          pip install -r requiements.txt
+
+      - name: Build documentation
+        run: sphinx-build -E -W -b html ./docs/source ./docs/build
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: Sphinx documentation
+          path: docs/build
