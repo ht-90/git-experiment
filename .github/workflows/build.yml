@@ -32,7 +32,7 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -m pip install --upgrade pip wheel
-          pip install -r requiements.txt
+          pip install -r requirements.txt
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
