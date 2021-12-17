@@ -42,3 +42,35 @@ jobs:
         with:
           name: Sphinx documentation
           path: docs/build
+
+  deploy:
+
+    needs: build
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure git user
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          path: docs
+
+      - name: Create .nojekyll file
+        run: echo > .nojekyll
+
+      - name: Commit to gh-pg branch
+        run: |
+          git checkout -b gh-pg
+          git add docs .nojekyll
+          git commit -m "Deploy documentation"
+          git push origin gh-pg
