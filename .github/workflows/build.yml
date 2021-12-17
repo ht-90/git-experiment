@@ -63,7 +63,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: Sphinx documentation
-          path: docs
+          path: docs/build
 
       - name: Create .nojekyll file
         run: echo > .nojekyll
@@ -71,6 +71,6 @@ jobs:
       - name: Commit to gh-pg branch
         run: |
           git checkout -b gh-pg
-          git add docs .nojekyll
+          git add .
           git commit -m "Deploy documentation"
           git push origin gh-pg
