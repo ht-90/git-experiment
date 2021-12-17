@@ -68,9 +68,13 @@ jobs:
       - name: Create .nojekyll file
         run: echo > .nojekyll
 
+      - name: Delete existing gh-pg branch
+        if: git branch -a | grep "remote/origin/gh-pg$"
+        run: git push origin -D gh-pg
+
       - name: Commit to gh-pg branch
         run: |
-          git checkout -b gh-pg
+          git checkout -b --orphan gh-pg
           git add .
           git commit -m "Deploy documentation"
           git push origin gh-pg
