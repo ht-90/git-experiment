@@ -54,6 +54,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Delete all files in repo
+        run: rm -r ./*
+
       - name: Configure git user
         run: |
           git config user.name "${{ github.actor }}"
