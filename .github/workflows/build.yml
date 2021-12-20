@@ -66,7 +66,7 @@ jobs:
           path: docs
 
       - name: Create .nojekyll file
-        run: echo > .nojekyll
+        run: echo > docs/.nojekyll
 
       - name: Delete existing gh-pg branch
         run: |
@@ -78,6 +78,6 @@ jobs:
         run: |
           git checkout --orphan gh-pg
           ls
-          git add docs .nojekyll
+          git add docs
           git commit -m "Deploy documentation"
           git push origin gh-pg
