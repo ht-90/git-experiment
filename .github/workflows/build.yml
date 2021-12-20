@@ -79,5 +79,5 @@ jobs:
           git checkout --orphan gh-pg
           ls
           git add docs
-          git commit -m "Deploy documentation"
+          git commit -m "Deploy documentation" -- docs
           git push origin gh-pg
