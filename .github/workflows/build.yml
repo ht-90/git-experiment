@@ -58,6 +58,11 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout --orphan gh-pg
+          git reset --hard
+          git commit --allow-empty -m "Init gh-pg branch"
+          git push origin gh-pg
+          rm -r ./*
 
       - name: Download artifact
         uses: actions/download-artifact@v2
@@ -70,7 +75,6 @@ jobs:
 
       - name: Commit to gh-pg branch
         run: |
-          git checkout --orphan gh-pg
           git add docs
           git commit -m "Deploy documentation" -- docs
           git push origin gh-pg
