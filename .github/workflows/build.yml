@@ -62,7 +62,6 @@ jobs:
           git reset --hard
           git commit --allow-empty -m "Init gh-pg branch"
           git push origin gh-pg
-          rm *
 
       - name: Download artifact
         uses: actions/download-artifact@v2
