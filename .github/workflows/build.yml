@@ -69,8 +69,10 @@ jobs:
         run: echo > .nojekyll
 
       - name: Delete existing gh-pg branch
-        if: git branch -a | grep "remote/origin/gh-pg$"
-        run: git push origin -D gh-pg
+        run: |
+          if git branch -a | grep -q -w "remotes/origin/gh-pg$";
+          then git push origin -D gh-pg;
+          fi
 
       - name: Commit to gh-pg branch
         run: |
