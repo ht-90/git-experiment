@@ -72,7 +72,7 @@ jobs:
       - name: Delete existing gh-pg branch
         run: |
           if git branch -a | grep -q -w "remotes/origin/gh-pg$";
-          then git push origin -D gh-pg;
+          then git push origin -d gh-pg;
           fi
 
       - name: Commit to gh-pg branch
