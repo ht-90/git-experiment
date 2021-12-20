@@ -58,9 +58,15 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+          ls
           git rm -rf .
           git clean -fxd
           git reset --hard
+          ls
+
+      - name: Orphan branch
+        run: |
+        ls
           git checkout --orphan gh-pg
           git commit --allow-empty -m "Init gh-pg branch"
           git push origin gh-pg
