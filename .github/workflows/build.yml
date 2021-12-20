@@ -77,7 +77,7 @@ jobs:
       - name: Commit to gh-pg branch
         run: |
           git checkout --orphan gh-pg
-          git ls
+          ls
           git add docs .nojekyll
           git commit -m "Deploy documentation"
           git push origin gh-pg
