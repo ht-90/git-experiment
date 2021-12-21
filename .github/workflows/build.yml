@@ -58,8 +58,9 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git push -d origin gh-pg
+          git branch -D gh-pg
           git checkout --orphan gh-pg
-          git pull origin gh-pg
 
       - name: Download artifact
         uses: actions/download-artifact@v2
