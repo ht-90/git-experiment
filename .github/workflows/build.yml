@@ -58,10 +58,7 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
-          if git branch | grep "gh-pg$"; then git branch -D gh-pg; fi
-          git fetch --prune
-          git checkout --orphan gh-pg
+          git pull gh-pg
 
       - name: Download artifact
         uses: actions/download-artifact@v2
@@ -75,6 +72,6 @@ jobs:
       - name: Commit to gh-pg branch
         run: |
           ls
-          git add docs
-          git commit -m "Deploy documentation" -- docs
+          git add .
+          git commit -m "Deploy documentation"
           git push origin gh-pg
