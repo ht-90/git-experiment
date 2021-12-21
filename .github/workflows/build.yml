@@ -59,7 +59,7 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
-          if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
+          if git branch | grep "gh-pg$"; then git branch -D gh-pg; fi
           git fetch --prune
           git checkout --orphan gh-pg
 
