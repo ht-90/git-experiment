@@ -60,6 +60,7 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           if git branch -r | grep "gh-pg"; then git push -d origin gh-pg; echo "deleted remote branch"; fi
           if git branch | grep "gh-pg"; then git branch -D gh-pg; echo "deleted local branch"; fi
+          git fetch --prune
           git checkout --orphan gh-pg
 
       - name: Download artifact
