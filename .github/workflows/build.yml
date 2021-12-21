@@ -58,7 +58,8 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git push -d origin gh-pg
+          if git branch -r | grep "gh-pg"; then git push -d origin gh-pg; echo "deleted remote branch"; fi
+          if git branch | grep "gh-pg"; then git branch -D gh-pg; echo "deleted local branch"; fi
           git checkout --orphan gh-pg
 
       - name: Download artifact
