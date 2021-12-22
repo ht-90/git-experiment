@@ -63,7 +63,7 @@ jobs:
         run: |
           git fetch
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
-          if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
+          if git branch | grep "gh-pg$"; then git branch -D gh-pg; fi
       
       - name: Initialse orphan branch for github pages
         run: |
@@ -89,7 +89,7 @@ jobs:
           git commit -m "Deploy documentation"
 
       - name: Push to github pages branch
-        if: ${{ github.ref == 'ref/heads/master' }}
+        if: ${{ github.ref == 'ref/heads/gh-pg' }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
