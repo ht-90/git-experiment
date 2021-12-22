@@ -59,12 +59,12 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
       
-      - name: Git config
+      - name: Remove existing branch for github pages
         run: |
+          git fetch
+          git branch -r
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
           if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
-          git branch -r
-          git fetch --prune
           git branch -r
       
       - name: Orphan branch
