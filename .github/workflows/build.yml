@@ -68,7 +68,7 @@ jobs:
           git rm -rf .
           git clean -fxd
           git add -A
-          git commit -m "Init gh-pg branch"
+          git commit --allow-empty -m "Init gh-pg branch"
           git push origin gh-pg
 
       - name: Download artifact
