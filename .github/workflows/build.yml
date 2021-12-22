@@ -61,10 +61,9 @@ jobs:
       
       - name: Remove existing branch for github pages
         run: |
-          git fetch
-          if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
+          if git branch -r | grep "gh-pg$"; then git fetch origin gh-pg; git push -d origin gh-pg; fi
           if git branch | grep "gh-pg$"; then git branch -D gh-pg; fi
-      
+
       - name: Initialse orphan branch for github pages
         run: |
           git checkout --orphan gh-pg
@@ -87,10 +86,12 @@ jobs:
         run: |
           git add .
           git commit -m "Deploy documentation"
+          echo ${{ github.ref }}
 
       - name: Push to github pages branch
         if: ${{ github.ref == 'ref/heads/gh-pg' }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
           branch: gh-pg
