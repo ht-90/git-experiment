@@ -58,20 +58,21 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-      
+
       - name: Remove existing branch for github pages
         run: |
-          if git branch -r | grep "gh-pg$"; then git fetch origin gh-pg; git push -d origin gh-pg; fi
-          if git branch | grep "gh-pg$"; then git branch -D gh-pg; fi
+          git fetch
+          if git branch -r | grep "gh-pages$"; then git push -d origin gh-pages; fi
+          if git branch | grep "gh-pages$"; then git branch -D gh-pages; fi
 
       - name: Initialse orphan branch for github pages
         run: |
-          git checkout --orphan gh-pg
+          git checkout --orphan gh-pages
           git rm -rf .
           git clean -fxd
           git add -A
-          git commit --allow-empty -m "Init gh-pg branch"
-          git push origin gh-pg
+          git commit --allow-empty -m "Init gh-pages branch"
+          git push origin gh-pages
 
       - name: Download artifact
         uses: actions/download-artifact@v2
@@ -84,14 +85,7 @@ jobs:
 
       - name: Commit artifacts
         run: |
+          ls
           git add .
           git commit -m "Deploy documentation"
-          echo ${{ github.ref }}
-
-      - name: Push to github pages branch
-        if: ${{ github.ref == 'ref/heads/gh-pg' }}
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
-          branch: gh-pg
+          git push origin gh-pages
