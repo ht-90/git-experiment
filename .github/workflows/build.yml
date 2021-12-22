@@ -62,12 +62,10 @@ jobs:
       - name: Remove existing branch for github pages
         run: |
           git fetch
-          git branch -r
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
           if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
-          git branch -r
       
-      - name: Orphan branch
+      - name: Initialse orphan branch for github pages
         run: |
           git branch -r
           git checkout --orphan gh-pg
@@ -86,7 +84,7 @@ jobs:
       - name: Create .nojekyll file
         run: echo > docs/.nojekyll
 
-      - name: Commit to gh-pg branch
+      - name: Commit artifacts
         run: |
           ls
           git add .
