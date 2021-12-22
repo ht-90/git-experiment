@@ -60,6 +60,7 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
       
       - name: Orphan branch
+        run: |
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
           if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
           git fetch --prune
