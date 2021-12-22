@@ -58,8 +58,17 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git pull origin gh-pg
-          git reset --hard
+      
+      - name: Orphan branch
+          if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
+          if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
+          git fetch --prune
+          git checkout --orphan gh-pg
+          git rm -rf .
+          git clean -fxd
+          git add -A
+          git commit -m "Init gh-pg branch"
+          git push origin gh-pg
 
       - name: Download artifact
         uses: actions/download-artifact@v2
