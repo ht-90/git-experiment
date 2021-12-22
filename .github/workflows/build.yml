@@ -67,7 +67,6 @@ jobs:
       
       - name: Initialse orphan branch for github pages
         run: |
-          git branch -r
           git checkout --orphan gh-pg
           git rm -rf .
           git clean -fxd
@@ -86,7 +85,12 @@ jobs:
 
       - name: Commit artifacts
         run: |
-          ls
           git add .
           git commit -m "Deploy documentation"
-          git push origin gh-pg
+
+      - name: Push to github pages branch
+        if: ${{ github.ref == 'ref/heads/master' }}
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pg
