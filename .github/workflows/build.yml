@@ -64,6 +64,7 @@ jobs:
           if git branch -r | grep "gh-pg$"; then git push -d origin gh-pg; fi
           if git branch | grep "gh-pg"; then git branch -D gh-pg; fi
           git fetch --prune
+          git branch -r
           git checkout --orphan gh-pg
           git rm -rf .
           git clean -fxd
