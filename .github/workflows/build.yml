@@ -60,15 +60,15 @@ jobs:
       - name: Create branch for github pages
         run: |
           git fetch
-          if git branch -r | grep "gh-pages$";
+          if git branch -r | grep "gh-pages$"
           then \
-            git checkout gh-pages;
+            git checkout gh-pages
           else \
             git checkout gh-pages
             git commit --allow-empty -m "Init gh-pages branch"
-            git push origin gh-pages;
+            git push origin gh-pages
           fi
-          git pull origin ${{ github.head_ref }}
+          git pull origin ${{ env.GITHUB_REF_NAME }}
 
       - name: Download artifact
         uses: actions/download-artifact@v2
