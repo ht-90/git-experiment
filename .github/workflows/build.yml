@@ -15,7 +15,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - uses: ./.github/actions/action
+      - uses: ./.github/actions
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
