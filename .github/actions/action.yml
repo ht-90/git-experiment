@@ -10,7 +10,7 @@ runs:
     - name: Install python
       uses: actions/setup-python@v2
       with:
-        python-version: "3.7"
+        python-version: '3.7'
 
     - name: Cache python dependecies
       uses: actions/cache@v2
