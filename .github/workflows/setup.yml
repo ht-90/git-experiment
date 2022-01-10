@@ -1,0 +1,33 @@
+# Composite action
+name: "Setup repository and python dependecies"
+description: "Checkout repo, install python and dependecies"
+
+inputs:
+  python_version: "3.7"
+
+runs:
+
+  using: "composite"
+  steps:
+
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Install python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ inputs.python_version }}
+
+    - name: Cache python dependecies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+      - name: Install python dependecies
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install --upgrade pip wheel
+          pip install -r requirements.txt
