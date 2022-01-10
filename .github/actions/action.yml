@@ -2,9 +2,6 @@
 name: "Setup repository and python dependecies"
 description: "Checkout repo, install python and dependecies"
 
-inputs:
-  python_version: "3.7"
-
 runs:
 
   using: "composite"
@@ -13,7 +10,7 @@ runs:
     - name: Install python
       uses: actions/setup-python@v2
       with:
-        python-version: "${{ inputs.python_version }}"
+        python-version: "3.7"
 
     - name: Cache python dependecies
       uses: actions/cache@v2
