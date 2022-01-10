@@ -12,7 +12,10 @@ jobs:
 
     steps:
 
-      - uses: workflows/setup@v1
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - uses: ./.github/actions/setup
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
