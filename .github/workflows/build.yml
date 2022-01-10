@@ -51,9 +51,11 @@ jobs:
 
     steps:
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Configure git user
         run: |
-          git init
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
