@@ -13,7 +13,7 @@ runs:
     - name: Install python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ inputs.python_version }}
+        python-version: "${{ inputs.python_version }}"
 
     - name: Cache python dependecies
       uses: actions/cache@v2
