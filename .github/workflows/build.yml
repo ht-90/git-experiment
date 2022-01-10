@@ -68,7 +68,6 @@ jobs:
             git commit --allow-empty -m "Init gh-pages branch"
             git push origin gh-pages
           fi
-          git pull origin ${{ env.GITHUB_REF_NAME }}
 
       - name: Download artifact
         uses: actions/download-artifact@v2
