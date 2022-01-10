@@ -64,7 +64,7 @@ jobs:
           then \
             git checkout gh-pages
           else \
-            git checkout gh-pages
+            git checkout -b gh-pages
             git commit --allow-empty -m "Init gh-pages branch"
             git push origin gh-pages
           fi
