@@ -20,6 +20,10 @@ jobs:
 
       - name: Check env vars
         run: echo "${HTTP_PROXY}"
+        env:
+          HTTP_PROXY: ${{ inputs.http_proxy }}
+          HTTPS_PROXY: ${{ inputs.https_proxy }}
+          PYTHON_DIR: ${{ inputs.python_dir }}
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
