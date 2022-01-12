@@ -5,7 +5,15 @@ description: "Checkout repo, install python and dependecies"
 runs:
 
   using: "composite"
+  env:
+    HTTP_PROXY: 'A'
+    HTTPS_PROXY: 'B'
+    PYTHON_DIR: 'C'
   steps:
+
+    - name: Check env vars
+      run: echo ${{ env.HTTPS_PROXY }}
+      shell: bash
 
     - name: Install python
       uses: actions/setup-python@v2
