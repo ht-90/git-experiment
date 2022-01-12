@@ -2,13 +2,22 @@
 name: "Setup repository and python dependecies"
 description: "Checkout repo, install python and dependecies"
 
+# Static input values
+inputs:
+  # Environmental variables for tox.ini
+  http_proxy:
+    default: 'A'
+    required: true
+  https_proxy:
+    default: 'B'
+    required: true
+  python_dir:
+    default: 'C'
+    required: true
+
 runs:
 
   using: "composite"
-  env:
-    HTTP_PROXY: 'A'
-    HTTPS_PROXY: 'B'
-    PYTHON_DIR: 'C'
   steps:
 
     - name: Check env vars
@@ -34,3 +43,11 @@ runs:
         python -m pip install --upgrade pip wheel
         pip install -r requirements.txt
       shell: bash
+
+    - run: |
+        echo "${HTTP_PROXY}"
+      shell: bash
+      env:
+        HTTP_PROXY: ${{ inputs.http_proxy }}
+        HTTPS_PROXY: ${{ inputs.https_proxy }}
+        PYTHON_DIR: ${{ inputs.python_dir }}
