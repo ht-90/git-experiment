@@ -20,8 +20,8 @@ runs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-      - name: Install python dependecies
-        run: |
-          python -c "import sys; print(sys.version)"
-          python -m pip install --upgrade pip wheel
-          pip install -r requirements.txt
+    - name: Install python dependecies
+      run: |
+        python -c "import sys; print(sys.version)"
+        python -m pip install --upgrade pip wheel
+        pip install -r requirements.txt
