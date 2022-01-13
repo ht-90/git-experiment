@@ -37,7 +37,7 @@ jobs:
 
   deploy:
 
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == "refs/heads/master" }}
     needs: build
     name: deploy
     runs-on: ubuntu-latest
