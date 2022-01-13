@@ -26,7 +26,7 @@ jobs:
         uses: ./.github/actions
 
       - name: Check env vars
-        run: echo "${HTTP_PROXY}"
+        run: echo "$HTTP_PROXY"
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
