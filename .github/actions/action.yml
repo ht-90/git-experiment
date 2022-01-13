@@ -50,7 +50,7 @@ runs:
         export HTTP_PROXY="${HTTP_PROXY}"
         export HTTPS_PROXY="${HTTPS_PROXY}"
         export PYTHON_DIR="${PYTHON_DIR}"
-        echo "${{ inputs.http_proxy }}""
+        echo "${{ inputs.http_proxy }}"
       shell: bash
       env:
         HTTP_PROXY: ${{ inputs.http_proxy }}
