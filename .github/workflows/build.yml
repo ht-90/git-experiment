@@ -3,6 +3,12 @@ name: build
 on:
   [ "push", "pull_request" ]
 
+env:
+  # Environmental variables for tox.ini
+  HTTP_PROXY: ''
+  HTTPS_PROXY: ''
+  PYTHON_DIR: '.'
+
 jobs:
 
   build:
@@ -21,10 +27,6 @@ jobs:
 
       - name: Check env vars
         run: echo "${HTTP_PROXY}"
-        env:
-          HTTP_PROXY: ${{ steps.setup.inputs.http_proxy }}
-          HTTPS_PROXY: ${{ steps.setup.inputs.https_proxy }}
-          PYTHON_DIR: ${{ steps.setup.inputs.python_dir }}
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
@@ -37,6 +39,7 @@ jobs:
 
   deploy:
 
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: build
     name: deploy
     runs-on: ubuntu-latest
