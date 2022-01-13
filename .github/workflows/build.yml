@@ -5,9 +5,7 @@ on:
 
 env:
   # Environmental variables for tox.ini
-  HTTP_PROXY: 'A'
-  HTTPS_PROXY: 'B'
-  PYTHON_DIR: 'C'
+  PYTHON_DIR: '.'
 
 jobs:
 
@@ -26,7 +24,7 @@ jobs:
         uses: ./.github/actions
 
       - name: Check env vars
-        run: echo "$HTTP_PROXY"
+        run: echo "$PYTHON_DIR"
 
       - name: Build documentation
         run: sphinx-build -E -W -b html ./docs/source ./docs/build
