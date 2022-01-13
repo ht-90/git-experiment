@@ -5,9 +5,9 @@ on:
 
 env:
   # Environmental variables for tox.ini
-  HTTP_PROXY: ''
-  HTTPS_PROXY: ''
-  PYTHON_DIR: '.'
+  HTTP_PROXY: 'A'
+  HTTPS_PROXY: 'B'
+  PYTHON_DIR: 'C'
 
 jobs:
 
